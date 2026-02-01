@@ -1,9 +1,9 @@
-<!doctype html>
+ <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="title">Auto Parts Pro — متجر قطع غيار</title>
+  <title>Auto Parts Pro — متجر قطع غيار</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,11 +15,9 @@
         <a href="#" class="logo">Auto Parts <span>Pro</span></a>
       </div>
 
-      <nav class="main-nav">
-        <a href="#products" data-i18n="nav_products">المنتجات</a>
-        <a href="#about" data-i18n="nav_about">من نحن</a>
-        <a href="#contact" data-i18n="nav_contact">تواصل معنا</a>
-      </nav>
+      <div class="search-area">
+        <input id="searchInput" type="search" placeholder="ابحث عن قطع أو موديل..." />
+      </div>
 
       <div class="header-actions">
         <select id="langSelect" aria-label="language">
@@ -27,10 +25,19 @@
           <option value="en">English</option>
         </select>
 
+        <div class="view-controls">
+          <select id="sortSelect" title="Sort">
+            <option value="relevance">ترتيب حسب: الاكثر مناسبة</option>
+            <option value="price_asc">السعر: الأقل أولاً</option>
+            <option value="price_desc">السعر: الأعلى أولاً</option>
+          </select>
+          <button id="toggleView" class="btn-ghost" title="Toggle view">قِائم / شبكة</button>
+        </div>
+
         <button id="chatToggle" class="chat-btn" aria-label="الدردشة">Chat</button>
 
         <button id="cartToggle" class="cart-btn" aria-label="عرض السلة">
-          <span data-i18n="cart">سلة</span> (<span id="cartCount">0</span>)
+          سلة (<span id="cartCount">0</span>)
         </button>
       </div>
     </div>
@@ -40,15 +47,14 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <h1 data-i18n="hero_title">أفضل قطع غيار لسيارتك بأفضل الأسعار</h1>
-          <p data-i18n="hero_sub">تصفّح مجموعتنا الواسعة من قطع الغيار الأصلية والبديلة، واطلبها بسرعة وسهولة.</p>
+          <h1>قطع غيار ذات جودة وموثوقية — اختَر ما يناسب سيارتك</h1>
+          <p class="muted">صور واقعية لكل منتج لتتأكد من الشكل والحجم قبل الشراء.</p>
           <div class="hero-cta">
-            <a href="#products" class="btn primary" data-i18n="browse">تصفح المنتجات</a>
-            <a href="#contact" class="btn ghost" data-i18n="contact">تواصل معنا</a>
+            <a href="#products" class="btn primary">تصفح المنتجات</a>
           </div>
         </div>
         <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a99c041a66d6f8a1d6f3b5f07cb436f" alt="قطع غيار سيارات">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=900&auto=format&fit=crop" alt="قطع غيار سيارات">
         </div>
       </div>
     </section>
@@ -56,112 +62,96 @@
     <section id="products" class="products section">
       <div class="container">
         <div class="section-head">
-          <h2 data-i18n="our_products">منتجاتنا</h2>
-          <div class="controls">
-            <input id="searchInput" type="search" placeholder="" data-i18n-placeholder="search_placeholder" />
+          <h2>منتجاتنا</h2>
+          <div class="controls-inline">
             <select id="categoryFilter">
-              <option value="all" data-i18n="all_categories">كل التصنيفات</option>
-              <option value="engine" data-i18n="cat_engine">محرك</option>
-              <option value="brake" data-i18n="cat_brake">فرامل</option>
-              <option value="suspension" data-i18n="cat_suspension">نظام تعليق</option>
-              <option value="electrical" data-i18n="cat_electrical">كهرباء</option>
+              <option value="all">كل التصنيفات</option>
+              <option value="engine">محرك</option>
+              <option value="brake">فرامل</option>
+              <option value="suspension">نظام تعليق</option>
+              <option value="electrical">كهرباء</option>
             </select>
           </div>
         </div>
 
-        <div id="productsGrid" class="grid"></div>
-      </div>
-    </section>
-
-    <section id="about" class="about section">
-      <div class="container">
-        <h2 data-i18n="about_title">من نحن</h2>
-        <p data-i18n="about_text">نقدم قطع غيار عالية الجودة وخدمة سريعة. هدفنا إرضاء العميل من خلال منتجات أصلية وبدائل موثوقة.</p>
-      </div>
-    </section>
-
-    <section id="contact" class="contact section">
-      <div class="container">
-        <h2 data-i18n="contact_title">تواصل معنا</h2>
-        <form id="contactForm" class="contact-form">
-          <label data-i18n="name_label">الاسم
-            <input type="text" name="name" required>
-          </label>
-          <label data-i18n="email_label">البريد الإلكتروني
-            <input type="email" name="email" required>
-          </label>
-          <label data-i18n="message_label">الرسالة
-            <textarea name="message" rows="4" required></textarea>
-          </label>
-          <button type="submit" class="btn primary" data-i18n="send">إرسال</button>
-        </form>
+        <div id="productsGrid" class="grid grid-rows"></div>
       </div>
     </section>
   </main>
 
+  <!-- cart panel -->
   <aside id="cartPanel" class="cart-panel" aria-hidden="true">
     <div class="cart-header">
-      <h3 data-i18n="cart">السلة</h3>
+      <h3>السلة</h3>
       <button id="closeCart" class="close-btn" aria-label="إغلاق">×</button>
     </div>
     <div id="cartItems" class="cart-items"></div>
     <div class="cart-footer">
       <div class="totals">
-        <span data-i18n="total">المجموع:</span> <strong id="cartTotal">0.00 ر.س</strong>
+        <span>المجموع:</span> <strong id="cartTotal">0.00 ر.س</strong>
       </div>
-      <button id="checkoutBtn" class="btn primary" data-i18n="checkout">الدفع</button>
+      <button id="checkoutBtn" class="btn primary">الدفع</button>
     </div>
   </aside>
 
-  <!-- منتج مفصل (Modal) -->
+  <!-- product modal / quick view -->
   <div id="productModal" class="modal" aria-hidden="true">
-    <div class="modal-content">
+    <div class="modal-content modal-large">
       <button id="closeModal" class="close-btn" aria-label="إغلاق">×</button>
       <div class="modal-grid">
-        <img id="modalImage" src="" alt="صورة المنتج">
+        <div class="gallery">
+          <div class="main-img-wrap">
+            <button id="prevImg" class="img-nav" aria-label="previous">‹</button>
+            <img id="modalImage" src="" alt="صورة المنتج" loading="lazy">
+            <button id="nextImg" class="img-nav" aria-label="next">›</button>
+          </div>
+          <div id="thumbs" class="thumbs"></div>
+        </div>
+
         <div class="modal-info">
-          <h3 id="modalTitle"></h3>
-          <p id="modalCategory" class="muted"></p>
-          <p id="modalDesc"></p>
+          <div class="meta">
+            <h3 id="modalTitle"></h3>
+            <div id="modalCategory" class="muted"></div>
+            <div id="modalBadge" class="badge"></div>
+          </div>
+          <p id="modalDesc" class="muted"></p>
+
           <div class="modal-actions">
             <div class="price"><span id="modalPrice">0.00</span> ر.س</div>
-            <div>
-              <label data-i18n="qty_label">الكمية
+            <div class="qty-add">
+              <label>الكمية
                 <input id="modalQty" type="number" min="1" value="1">
               </label>
-              <button id="addToCartBtn" class="btn primary" data-i18n="add_to_cart">أضف للسلة</button>
+              <button id="addToCartBtn" class="btn primary">أضف للسلة</button>
             </div>
+          </div>
+
+          <div class="info-list">
+            <div><strong>رمز المنتج:</strong> <span id="modalSKU">-</span></div>
+            <div><strong>الحالة:</strong> <span id="modalStock">متوفر</span></div>
+            <div><strong>معلومات إضافية:</strong> <span id="modalExtra">---</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- شات بوت -->
+  <!-- chat panel (مخفف) -->
   <div id="chatPanel" class="chat-panel" aria-hidden="true">
     <div class="chat-header">
-      <div>
-        <strong data-i18n="chat_title">الدردشة مع الدعم</strong>
-        <div class="muted small" data-i18n="chat_sub">ردود فورية بالعربية والإنجليزية</div>
-      </div>
-      <div>
-        <select id="botMode" title="Bot mode">
-          <option value="local">Local Bot</option>
-          <option value="api">AI (requires server)</option>
-        </select>
-        <button id="closeChat" class="close-btn" aria-label="close">×</button>
-      </div>
+      <strong>الدردشة مع الدعم</strong>
+      <button id="closeChat" class="close-btn">×</button>
     </div>
     <div id="chatMessages" class="chat-messages"></div>
     <form id="chatForm" class="chat-form">
-      <input id="chatInput" type="text" placeholder="" data-i18n-placeholder="chat_placeholder" autocomplete="off" />
-      <button type="submit" class="btn primary" data-i18n="send">إرسال</button>
+      <input id="chatInput" type="text" placeholder="اكتب سؤالك هنا..." autocomplete="off" />
+      <button type="submit" class="btn primary">إرسال</button>
     </form>
   </div>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span id="year">2026</span> Auto Parts Pro — <span data-i18n="rights">جميع الحقوق محفوظة</span></p>
+      <p>© <span id="year">2026</span> Auto Parts Pro — جميع الحقوق محفوظة</p>
     </div>
   </footer>
 
